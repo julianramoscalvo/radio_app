@@ -1,16 +1,28 @@
-# radio_app
+# Radio App
 
-A new Flutter project.
+![Channel List](assets/screenshots/channel_list.jpg)
+![Radio Player](assets/screenshots/radio_player.jpg)
+
+## Description
+
+The Radio Channel App is a Flutter application that allows users to browse and listen to various radio channels. The app provides a user-friendly interface with two main screens:
+
+1. 📻 **Channel List Screen:** Browse through a list of radio channels, each represented by a name and an image. Select the channel you want to listen to.
+
+2. 🎧 **Radio Player Screen:** Upon selecting a channel, enjoy a seamless audio streaming experience with playback controls. The screen displays the channel's logo and allows you to control the audio stream.
+
+## Features
+
+- Browse and select from a variety of radio channels.
+- Enjoy smooth audio streaming with playback controls.
+- Clean and intuitive user interface for easy navigation.
+- Two screens: Channel List and Radio Player.
+- Built using clean architecture principles with Cubit and Bloc.
+- Access your favorite radio content on-the-go.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository.
+2. Make sure you have Flutter installed.
+3. Run `flutter pub get` to fetch dependencies.
+4. Run the app on your preferred device using `flutter run`.
