@@ -1,0 +1,12 @@
+{
+    "@@locale": "en",
+    "yes": "Yes",
+    "no": "No",
+    "accept": "Accept",
+    "okay": "okay",
+    "cancel": "Cancel",
+    "homeGreet": "Hello,",
+    "radioFan": "RadioFan",
+    "searchText": "Radio channels",
+    "channels": "Channels"
+}
