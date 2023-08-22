@@ -11,20 +11,9 @@ class HomeCubit extends Cubit<HomeState> {
   int currentPage = 0;
   String _searchText = '';
 
-  HomeCubit({required this.radioRepository}) : super(HomeState.initial()) {
-    _initScrollListener();
-  }
+  HomeCubit({required this.radioRepository}) : super(HomeState.initial());
 
   ScrollController get scrollController => _scrollController;
-
-  void _initScrollListener() {
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        _loadMoreRadioChannels();
-      }
-    });
-  }
 
   void _resetPagination() {
     currentPage = 0;
@@ -58,7 +47,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> _loadMoreRadioChannels() async {
+  Future<void> loadMoreRadioChannels() async {
     if (state.status != RequestStatus.loading) {
       emit(state.copyWith(loadingMore: true));
       try {

@@ -34,20 +34,16 @@ class Content extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.black,
           body: SafeArea(
-            child: Stack(
-              children: [
-                NestedScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  controller: context.read<HomeCubit>().scrollController,
-                  headerSliverBuilder: (context, innerBoxScrolled) {
-                    return <Widget>[
-                      const FlexibleSpaceBarWidget(),
-                      const SearchBarWidget(),
-                    ];
-                  },
-                  body: const ChannelBox(),
-                ),
-              ],
+            child: NestedScrollView(
+              physics: const BouncingScrollPhysics(),
+              controller: context.read<HomeCubit>().scrollController,
+              headerSliverBuilder: (context, innerBoxScrolled) {
+                return <Widget>[
+                  const FlexibleSpaceBarWidget(),
+                  const SearchBarWidget(),
+                ];
+              },
+              body: const ChannelBox(),
             ),
           ),
         );

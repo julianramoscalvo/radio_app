@@ -21,7 +21,7 @@ class RadioApiService {
     };
     final uri = Uri.parse(baseUrl).replace(queryParameters: queryParams);
     final response = await http.get(uri);
-    print('URL -> $baseUrl -> parameters: $queryParams');
+    //print('URL -> $baseUrl -> parameters: $queryParams');
     if (response.statusCode == 200) {
       final List<dynamic> jsonList =
           json.decode(utf8.decode(response.bodyBytes));
