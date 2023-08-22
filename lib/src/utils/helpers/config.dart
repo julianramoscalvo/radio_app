@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 
 class MyTheme with ChangeNotifier {
   bool _isDark = true;
@@ -108,26 +107,6 @@ class MyTheme with ChangeNotifier {
     ]
   ];
 
-  void switchTheme({bool? useSystemTheme, bool? isDark, bool notify = true}) {
-    if (isDark != null) {
-      _isDark = isDark;
-    }
-    if (useSystemTheme != null) {
-      _useSystemTheme = useSystemTheme;
-    }
-    Hive.box('settings').put('darkMode', _isDark);
-    Hive.box('settings').put('useSystemTheme', _useSystemTheme);
-    if (notify) notifyListeners();
-  }
-
-  void switchColor(String color, int hue, {bool notify = true}) {
-    Hive.box('settings').put('themeColor', color);
-    accentColor = color;
-    Hive.box('settings').put('colorHue', hue);
-    colorHue = hue;
-    if (notify) notifyListeners();
-  }
-
   ThemeMode currentTheme() {
     if (_useSystemTheme == true) {
       return ThemeMode.system;
@@ -186,12 +165,6 @@ class MyTheme with ChangeNotifier {
     if (canvasColor == 'Black') return Colors.black;
     if (canvasColor == 'Grey') return Colors.grey[900]!;
     return Colors.grey[900]!;
-  }
-
-  void switchCanvasColor(String color, {bool notify = true}) {
-    Hive.box('settings').put('canvasColor', color);
-    canvasColor = color;
-    if (notify) notifyListeners();
   }
 
   Color getCardColor() {

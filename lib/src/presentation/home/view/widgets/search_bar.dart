@@ -6,8 +6,8 @@ import 'package:lottie/lottie.dart';
 import '../../../../config/languages/generated/l10n.dart';
 import '../../cubit/home_cubit.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+class SearchBarWidget extends StatelessWidget {
+  const SearchBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

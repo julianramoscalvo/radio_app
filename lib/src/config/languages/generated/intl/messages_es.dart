@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accept": MessageLookupByLibrary.simpleMessage("Aceptar"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "channels": MessageLookupByLibrary.simpleMessage("Cadenas"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "homeGreet": MessageLookupByLibrary.simpleMessage("Hola,"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),

@@ -100,6 +100,16 @@ class L {
     );
   }
 
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hola,`
   String get homeGreet {
     return Intl.message(
