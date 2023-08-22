@@ -43,7 +43,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(
           status: RequestStatus.failure,
           radioChannels: [],
-          errorStatus: 'Error loading radio channels: $error'));
+          errorStatus: '$error'));
     }
   }
 
@@ -70,7 +70,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(state.copyWith(
             status: RequestStatus.failure,
             radioChannels: [],
-            errorStatus: 'Error loading radio channels: $error',
+            errorStatus: '$error',
             loadingMore: false));
       }
     }
