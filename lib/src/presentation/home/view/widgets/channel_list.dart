@@ -5,19 +5,21 @@ import 'package:lottie/lottie.dart';
 import 'package:radio_app/src/domain/models/radio_channel.dart';
 import '../../cubit/home_cubit.dart';
 import '../../cubit/home_state.dart';
-import 'image_card.dart';
 import 'package:radio_app/src/utils/helpers/extensions.dart';
+
+import 'channel_image_card.dart';
 
 class ChannelList extends StatelessWidget {
   const ChannelList({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       List<RadioChannel> songsList = state.radioChannels;
       bool loadingMore = state.loadingMore;
+
       return Expanded(
         child: Align(
           alignment: Alignment.centerLeft,
@@ -30,34 +32,34 @@ class ChannelList extends StatelessWidget {
               if (index < songsList.length) {
                 RadioChannel radioChannel = songsList[index];
                 return ListTile(
-                    title: Text(
-                      radioChannel.name ?? '-',
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    subtitle: Text(
-                      radioChannel.tags != null
-                          ? radioChannel.tags!
-                              .capitalizeWordsSeparatedByCommas()
-                          : '',
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    leading: imageCard(
-                      imageUrl: radioChannel.favicon ?? '',
-                      imageId: radioChannel.stationuuid ?? '',
-                      placeholderImage: const AssetImage(
-                        'assets/img/album.png',
-                      ),
-                    ),
-                    onTap: () => context.push(
-                          "/player",
-                          extra: {'radioChannel': radioChannel},
-                        ));
+                  title: Text(
+                    radioChannel.name ?? '-',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  subtitle: Text(
+                    radioChannel.tags != null
+                        ? radioChannel.tags!.capitalizeWordsSeparatedByCommas()
+                        : '',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  leading: ChannelImageCard(
+                    imageUrl: radioChannel.favicon ?? '',
+                    imageId: radioChannel.stationuuid ?? '',
+                    placeholderImage: const AssetImage('assets/img/album.png'),
+                  ),
+                  onTap: () => context.push(
+                    "/player",
+                    extra: {'radioChannel': radioChannel},
+                  ),
+                );
               } else {
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
-                    child: Lottie.asset('assets/animations/ax_headphone.json',
-                        width: 50),
+                    child: Lottie.asset(
+                      'assets/animations/ax_headphone.json',
+                      width: 50,
+                    ),
                   ),
                 );
               }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:radio_app/src/data/repositories/remote/radio_repository.dart';
+import '../../../data/repositories/remote/radio_repository.dart';
 import '../../../utils/helpers/enum.dart';
 import 'home_state.dart';
 
@@ -10,7 +10,8 @@ class HomeCubit extends Cubit<HomeState> {
   final int itemsPage = 20;
   int currentPage = 0;
 
-  HomeCubit({required this.radioRepository}) : super(HomeState.initial()) {
+  HomeCubit({required this.radioRepository})
+      : super(HomeState.initial()) {
     _initScrollListener();
   }
 

@@ -15,6 +15,7 @@ class HomeState extends Equatable {
     this.loadingMore = false,
   });
 
+  // Factory constructor for the initial state
   factory HomeState.initial() => const HomeState(
         radioChannels: [],
         status: RequestStatus.loading,
@@ -22,6 +23,7 @@ class HomeState extends Equatable {
         loadingMore: false,
       );
 
+  // CopyWith method for creating a new state with updated values
   HomeState copyWith({
     List<RadioChannel>? radioChannels,
     RequestStatus? status,

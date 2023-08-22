@@ -7,7 +7,7 @@ import '../../cubit/home_state.dart';
 import 'channel_list.dart';
 
 class ChannelBox extends StatelessWidget {
-  const ChannelBox({super.key});
+  const ChannelBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
