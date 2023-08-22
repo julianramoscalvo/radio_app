@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../domain/models/radio_channel.dart';
 import '../cubit/channel_player_cubit.dart';
 import 'widgets/content.dart';

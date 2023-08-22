@@ -8,14 +8,16 @@ class RadioRepository {
   RadioRepository({required RadioApiService apiService})
       : _apiService = apiService;
 
-  Future<List<RadioChannel>> fetchRadioChannelsPaginated(
-      {required int limit, required int offset}) async {
+  Future<List<RadioChannel>> fetchRadioChannelsPaginated({
+    required int limit,
+    required int offset,
+  }) async {
     try {
       final List<RadioChannel> channels = await _apiService
           .fetchRadioChannelsPaginated(limit: limit, offset: offset);
       return channels;
-    } catch (e) {
-      debugPrint('Error fetching radio channels: $e');
+    } catch (error) {
+      debugPrint('Error fetching radio channels: $error');
       rethrow;
     }
   }

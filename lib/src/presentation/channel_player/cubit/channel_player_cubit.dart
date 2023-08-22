@@ -1,22 +1,25 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:radio_app/src/domain/models/radio_channel.dart';
 import 'package:radio_player/radio_player.dart';
+
 import 'channel_player_state.dart';
 
 class ChannelPlayerCubit extends Cubit<ChannelPlayerState> {
   final RadioChannel radioChannel;
-  RadioPlayer radioPlayer = RadioPlayer();
+  final RadioPlayer radioPlayer;
 
   ChannelPlayerCubit({required this.radioChannel})
-      : super(const ChannelPlayerState()) {
+      : radioPlayer = RadioPlayer(),
+        super(const ChannelPlayerState()) {
     _initRadioPlayer(radioChannel);
   }
 
-  void _initRadioPlayer(RadioChannel radioChannel) async {
+  Future<void> _initRadioPlayer(RadioChannel radioChannel) async {
     await radioPlayer.setChannel(
-        title: radioChannel.name ?? '',
-        url: radioChannel.url ?? '',
-        imagePath: 'assets/img/album.png');
+      title: radioChannel.name ?? '',
+      url: radioChannel.url ?? '',
+      imagePath: 'assets/img/album.png',
+    );
     await radioPlayer.play();
   }
 
@@ -36,6 +39,7 @@ class ChannelPlayerCubit extends Cubit<ChannelPlayerState> {
   @override
   Future<void> close() {
     resetRadioPlayer();
+    radioPlayer.stop(); // Dispose the radio player instance
     return super.close();
   }
 }
