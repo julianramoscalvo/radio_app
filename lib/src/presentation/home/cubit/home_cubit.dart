@@ -26,6 +26,10 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
+  void _resetPagination() {
+    currentPage = 0;
+  }
+
   Future<void> loadRadioChannels(
       {String searchText = '', bool resetPagination = false}) async {
     emit(state.copyWith(
@@ -33,7 +37,7 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       _searchText = searchText;
       if (resetPagination) {
-        currentPage = 0;
+        _resetPagination();
       }
       final result = await radioRepository.fetchRadioChannelsPaginated(
         limit: itemsPage,
@@ -46,10 +50,11 @@ class HomeCubit extends Cubit<HomeState> {
           radioChannels: result,
           errorStatus: ''));
     } catch (error) {
+      _resetPagination();
       emit(state.copyWith(
           status: RequestStatus.failure,
           radioChannels: [],
-          errorStatus: error.toString()));
+          errorStatus: 'Error loading radio channels: $error'));
     }
   }
 
@@ -72,7 +77,12 @@ class HomeCubit extends Cubit<HomeState> {
           ));
         }
       } catch (error) {
-        emit(state.copyWith(loadingMore: false));
+        _resetPagination();
+        emit(state.copyWith(
+            status: RequestStatus.failure,
+            radioChannels: [],
+            errorStatus: 'Error loading radio channels: $error',
+            loadingMore: false));
       }
     }
   }
