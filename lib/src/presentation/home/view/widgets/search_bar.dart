@@ -41,62 +41,58 @@ class SearchBar extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  child: AnimatedContainer(
-                    width: (!scrollController.hasClients ||
-                            scrollController.positions.length > 1)
-                        ? MediaQuery.of(context).size.width
-                        : max(
-                            MediaQuery.of(context).size.width -
-                                scrollController.offset.roundToDouble(),
-                            MediaQuery.of(context).size.width - 75,
-                          ),
-                    height: 55.0,
-                    duration: const Duration(milliseconds: 150),
-                    padding: const EdgeInsets.all(2.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Theme.of(context).cardColor,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 5.0,
-                          offset: Offset(1.5, 1.5),
-                        )
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 10.0),
-                        Icon(
-                          CupertinoIcons.search,
-                          color: Theme.of(context).colorScheme.secondary,
+                child: AnimatedContainer(
+                  width: (!scrollController.hasClients ||
+                          scrollController.positions.length > 1)
+                      ? MediaQuery.of(context).size.width
+                      : max(
+                          MediaQuery.of(context).size.width -
+                              scrollController.offset.roundToDouble(),
+                          MediaQuery.of(context).size.width - 75,
                         ),
-                        const SizedBox(width: 10.0),
-                        Text(
-                          L().searchText,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Theme.of(context).textTheme.bodySmall!.color,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ],
-                    ),
+                  height: 55.0,
+                  duration: const Duration(milliseconds: 150),
+                  padding: const EdgeInsets.all(2.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Theme.of(context).cardColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 5.0,
+                        offset: Offset(1.5, 1.5),
+                      )
+                    ],
                   ),
-                  onTap: () => null,
-                  /*
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SearchPage(
-                          query: '',
-                          fromHome: true,
-                          autofocus: true,
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10.0),
+                      Icon(
+                        CupertinoIcons.search,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                      const SizedBox(width: 10.0),
+                      Expanded(
+                        child: TextField(
+                          //controller: searchController,
+                          decoration: InputDecoration.collapsed(
+                            hintText: L().searchText,
+                            hintStyle: TextStyle(
+                              fontSize: 16.0,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          onSubmitted: (String searchTerm) => context
+                              .read<HomeCubit>()
+                              .loadRadioChannels(
+                                  searchText: searchTerm,
+                                  resetPagination: true),
                         ),
                       ),
-                    ),
-                  */
+                    ],
+                  ),
                 ),
               ),
             ],

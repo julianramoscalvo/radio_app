@@ -9,9 +9,9 @@ class HomeCubit extends Cubit<HomeState> {
   final RadioRepository radioRepository;
   final int itemsPage = 20;
   int currentPage = 0;
+  String _searchText = '';
 
-  HomeCubit({required this.radioRepository})
-      : super(HomeState.initial()) {
+  HomeCubit({required this.radioRepository}) : super(HomeState.initial()) {
     _initScrollListener();
   }
 
@@ -26,13 +26,19 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
-  Future<void> loadRadioChannels() async {
+  Future<void> loadRadioChannels(
+      {String searchText = '', bool resetPagination = false}) async {
     emit(state.copyWith(
         status: RequestStatus.loading, radioChannels: [], errorStatus: ''));
     try {
+      _searchText = searchText;
+      if (resetPagination) {
+        currentPage = 0;
+      }
       final result = await radioRepository.fetchRadioChannelsPaginated(
         limit: itemsPage,
         offset: currentPage * itemsPage,
+        searchText: searchText,
       );
       currentPage++;
       emit(state.copyWith(
@@ -54,6 +60,7 @@ class HomeCubit extends Cubit<HomeState> {
         final result = await radioRepository.fetchRadioChannelsPaginated(
           limit: itemsPage,
           offset: currentPage * itemsPage,
+          searchText: _searchText,
         );
         if (result.isEmpty) {
           emit(state.copyWith(loadingMore: false));

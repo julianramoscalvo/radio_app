@@ -11,10 +11,15 @@ class RadioRepository {
   Future<List<RadioChannel>> fetchRadioChannelsPaginated({
     required int limit,
     required int offset,
+    String searchText = '',
   }) async {
     try {
-      final List<RadioChannel> channels = await _apiService
-          .fetchRadioChannelsPaginated(limit: limit, offset: offset);
+      final List<RadioChannel> channels =
+          await _apiService.fetchRadioChannelsPaginated(
+        limit: limit,
+        offset: offset,
+        searchText: searchText,
+      );
       return channels;
     } catch (error) {
       debugPrint('Error fetching radio channels: $error');
