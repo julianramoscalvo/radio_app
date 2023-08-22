@@ -20,6 +20,7 @@ The Radio Channel App is a Flutter application that allows users to browse and l
 - Clean and intuitive user interface for easy navigation.
 - Two screens: Channel List and Radio Player.
 - Built-in search functionality to find specific radio channels.
+- Cross-platform: Available for both Android and iOS devices.
 - Built using clean architecture principles with Cubit and Bloc.
 - Access your favorite radio content on-the-go.
 
