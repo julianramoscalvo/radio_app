@@ -34,34 +34,37 @@ class MyApp extends StatelessWidget {
           create: (_) => RadioApiService(),
         ),
       ],
-      child: MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider(
-            create: (_) => RadioRepository(
-              apiService: Provider.of<RadioApiService>(context, listen: false),
+      child: Builder(builder: (context) {
+        return MultiRepositoryProvider(
+          providers: [
+            RepositoryProvider(
+              create: (_) => RadioRepository(
+                apiService:
+                    Provider.of<RadioApiService>(context, listen: false),
+              ),
             ),
-          ),
-        ],
-        child: MaterialApp.router(
-          title: APP_NAME,
-          debugShowCheckedModeBanner: false,
-          themeMode: AppTheme.themeMode,
-          theme: AppTheme.lightTheme(
-            context: context,
-          ),
-          darkTheme: AppTheme.darkTheme(
-            context: context,
-          ),
-          localizationsDelegates: const [
-            L.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: L.delegate.supportedLocales,
-          routerConfig: router,
-        ),
-      ),
+          child: MaterialApp.router(
+            title: APP_NAME,
+            debugShowCheckedModeBanner: false,
+            themeMode: AppTheme.themeMode,
+            theme: AppTheme.lightTheme(
+              context: context,
+            ),
+            darkTheme: AppTheme.darkTheme(
+              context: context,
+            ),
+            localizationsDelegates: const [
+              L.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: L.delegate.supportedLocales,
+            routerConfig: router,
+          ),
+        );
+      }),
     );
   }
 }
